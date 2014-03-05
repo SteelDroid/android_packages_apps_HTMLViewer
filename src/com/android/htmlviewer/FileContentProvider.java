@@ -35,9 +35,8 @@ import android.os.Process;
  * Javascript to be run, it is safe to load file based HTML content.
 */
 public class FileContentProvider extends ContentProvider {
-    
-    public static final String BASE_URI = 
-            "content://com.android.htmlfileprovider";
+
+    public static final String BASE_URI = "content://com.android.htmlfileprovider";
     public static final int BASE_URI_LEN = BASE_URI.length();
 
     @Override
@@ -46,7 +45,7 @@ public class FileContentProvider extends ContentProvider {
         String mimetype = uri.getQuery();
         return mimetype == null ? "" : mimetype;
     }
-    
+
     @Override
     public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
         // android:exported="false" is broken in older releases so we have to
@@ -61,7 +60,7 @@ public class FileContentProvider extends ContentProvider {
         return ParcelFileDescriptor.open(new File(filename),
             ParcelFileDescriptor.MODE_READ_ONLY);
     }
-    
+
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         throw new UnsupportedOperationException();
